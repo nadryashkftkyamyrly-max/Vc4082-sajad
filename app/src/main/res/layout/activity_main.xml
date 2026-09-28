@@ -1,0 +1,48 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:fillViewport="true" android:background="#FFFFFF">
+  <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+      android:orientation="vertical" android:padding="16dp" android:layoutDirection="rtl">
+
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:text="محاسبه‌گر VC4082، مچینگ و ترانس" android:textSize="23sp"
+        android:textStyle="bold" android:gravity="center" android:textColor="#102A43"/>
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:text="ورودی از VC4082 در فرکانس واقعی → مچ بعد ترانس → مچ قبل ترانس → طراحی ترانس"
+        android:textSize="13sp" android:gravity="center" android:textColor="#52606D" android:layout_marginBottom="14dp"/>
+
+    <TextView style="@android:style/Widget.TextView" android:text="۱) اندازه‌گیری بار" android:textStyle="bold" android:textSize="18sp" android:textColor="#1565C0"/>
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:background="@drawable/box" android:padding="10dp">
+      <EditText android:id="@+id/frequency" android:hint="فرکانس Hz (مثلاً 5000)" android:inputType="numberDecimal" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="5000"/>
+      <Spinner android:id="@+id/inputMode" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+      <EditText android:id="@+id/inA" android:hint="Rs (Ω)" android:inputType="numberDecimal|numberSigned" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+      <EditText android:id="@+id/inB" android:hint="Xs (Ω؛ با علامت)" android:inputType="numberDecimal|numberSigned" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <TextView android:text="۲) ترانس و هدف آمپ" android:textStyle="bold" android:textSize="18sp" android:textColor="#1565C0" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="14dp"/>
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:background="@drawable/box" android:padding="10dp">
+      <EditText android:id="@+id/ns" android:hint="تعداد دور ثانویه Ns" android:inputType="numberDecimal" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="1200"/>
+      <EditText android:id="@+id/targetR" android:hint="بار هدف آمپ روی اولیه (Ω)؛ مثلاً 4" android:inputType="numberDecimal" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="4"/>
+      <EditText android:id="@+id/vPrimary" android:hint="ولتاژ سینوسی اولیه Vrms" android:inputType="numberDecimal" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="14"/>
+      <EditText android:id="@+id/ae" android:hint="سطح مؤثر هسته Ae (mm²)؛ ETD59≈368" android:inputType="numberDecimal" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="368"/>
+      <EditText android:id="@+id/bmax" android:hint="Bmax هدف (T)؛ مثلاً 0.15" android:inputType="numberDecimal" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="0.15"/>
+      <EditText android:id="@+id/al" android:hint="AL هسته nH/turn² (اختیاری؛ تست 10 دور تو≈5470)" android:inputType="numberDecimal" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="5470"/>
+    </LinearLayout>
+
+    <TextView android:text="۳) اختیاری: محاسبات کویل/خاک" android:textStyle="bold" android:textSize="18sp" android:textColor="#1565C0" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="14dp"/>
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:background="@drawable/box" android:padding="10dp">
+      <EditText android:id="@+id/lCoil" android:hint="L کویل (mH)، اختیاری" android:inputType="numberDecimal" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+      <EditText android:id="@+id/rCoil" android:hint="Rs کویل (Ω)، اختیاری" android:inputType="numberDecimal" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+      <EditText android:id="@+id/rSoil" android:hint="Rs خاک (Ω)، اختیاری" android:inputType="numberDecimal" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <Button android:id="@+id/calc" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="محاسبه" android:textSize="17sp" android:layout_marginTop="16dp"/>
+    <Button android:id="@+id/save" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="ذخیره ورودی‌ها روی گوشی"/>
+    <Button android:id="@+id/clear" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="پاک کردن"/>
+
+    <TextView android:text="نتایج" android:textStyle="bold" android:textSize="18sp" android:textColor="#1565C0" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="14dp"/>
+    <TextView android:id="@+id/result" android:layout_width="match_parent" android:layout_height="wrap_content" android:background="@drawable/box" android:padding="14dp" android:textSize="15sp" android:textColor="#102A43" android:textIsSelectable="true" android:lineSpacingExtra="5dp"/>
+
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="نکته: مچ فاز (X≈0 یا θ≈0°) با مچ امپدانس آمپ یکی نیست. اپ هر دو را جدا حساب می‌کند. نتایج خاک small-signal هستند و در ولتاژ بالا ممکن است تغییر کنند." android:textSize="12sp" android:textColor="#7B8794" android:paddingTop="12dp" android:paddingBottom="20dp"/>
+  </LinearLayout>
+</ScrollView>
